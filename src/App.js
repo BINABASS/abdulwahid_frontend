@@ -4,6 +4,8 @@ import Welcome from './components/auth/Welcome';
 import Login from './components/auth/Login';
 import Dashboard from './components/dashboard/Dashboard';
 import ForgotPassword from './components/auth/ForgotPassword';
+import Properties from './components/properties/Properties';
+import Layout from './components/layout/Layout';
 import './App.css';
 
 function App() {
@@ -13,8 +15,17 @@ function App() {
         <Routes>
           <Route path="/" element={<Welcome />} />
           <Route path="/login" element={<Login />} />
-          <Route path="/dashboard" element={<Dashboard />} />
           <Route path="/forgot-password" element={<ForgotPassword />} />
+          <Route path="/dashboard" element={
+            <Layout>
+              <Dashboard />
+            </Layout>
+          } />
+          <Route path="/properties" element={
+            <Layout>
+              <Properties />
+            </Layout>
+          } />
         </Routes>
       </div>
     </Router>

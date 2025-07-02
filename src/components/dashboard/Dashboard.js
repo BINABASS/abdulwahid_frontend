@@ -1,92 +1,96 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import './Dashboard.css';
 
 const Dashboard = () => {
   return (
     <div className="dashboard">
-      <div className="dashboard-sidebar">
+      <div className="sidebar">
         <div className="sidebar-header">
-          <h2>Digital Brokerage</h2>
+          <h1>Digital Brokerage</h1>
         </div>
         <nav className="sidebar-nav">
           <ul>
-            <li className="active">
-              <a href="/dashboard">
-                <span>📊</span>
-                Dashboard
-              </a>
+            <li>
+              <Link to="/dashboard" className="nav-link">
+                <i className="fas fa-chart-line"></i>
+                <span>Dashboard</span>
+              </Link>
             </li>
             <li>
-              <a href="/properties">
-                <span>🏠</span>
-                Properties
-              </a>
+              <Link to="/properties" className="nav-link">
+                <i className="fas fa-home"></i>
+                <span>Properties</span>
+              </Link>
             </li>
             <li>
-              <a href="/bookings">
-                <span>📅</span>
-                Bookings
-              </a>
+              <Link to="/bookings" className="nav-link">
+                <i className="fas fa-calendar"></i>
+                <span>Bookings</span>
+              </Link>
             </li>
             <li>
-              <a href="/clients">
-                <span>👥</span>
-                Clients
-              </a>
+              <Link to="/clients" className="nav-link">
+                <i className="fas fa-users"></i>
+                <span>Clients</span>
+              </Link>
             </li>
             <li>
-              <a href="/messages">
-                <span>💬</span>
-                Messages
-              </a>
+              <Link to="/messages" className="nav-link">
+                <i className="fas fa-envelope"></i>
+                <span>Messages</span>
+              </Link>
             </li>
             <li>
-              <a href="/reports">
-                <span>📊</span>
-                Reports
-              </a>
+              <Link to="/reports" className="nav-link">
+                <i className="fas fa-chart-bar"></i>
+                <span>Reports</span>
+              </Link>
             </li>
           </ul>
         </nav>
       </div>
-
-      <div className="dashboard-content">
-        <div className="dashboard-header">
-          <h2>Dashboard</h2>
-          <div className="user-info">
-            <span>Admin</span>
-            <button className="logout-btn">Logout</button>
+      <div className="main-content">
+        <div className="header">
+          <div className="welcome">
+            <h2>Dashboard</h2>
+            <p>Admin</p>
+          </div>
+          <div className="user-actions">
+            <Link to="/login" className="logout-btn">
+              <i className="fas fa-sign-out-alt"></i>
+              Logout
+            </Link>
           </div>
         </div>
-
-        <div className="dashboard-stats">
+        <div className="stats-grid">
           <div className="stat-card">
             <h3>Total Properties</h3>
-            <div className="stat-value">125</div>
-            <div className="stat-change positive">+15%</div>
+            <p>125</p>
+            <span className="trend up">+15%</span>
           </div>
           <div className="stat-card">
             <h3>Active Bookings</h3>
-            <div className="stat-value">42</div>
-            <div className="stat-change positive">+8%</div>
+            <p>42</p>
+            <span className="trend up">+8%</span>
           </div>
           <div className="stat-card">
             <h3>New Clients</h3>
-            <div className="stat-value">35</div>
-            <div className="stat-change positive">+12%</div>
+            <p>35</p>
+            <span className="trend up">+12%</span>
           </div>
           <div className="stat-card">
             <h3>Messages</h3>
-            <div className="stat-value">18</div>
-            <div className="stat-change negative">-5%</div>
+            <p>18</p>
+            <span className="trend down">-5%</span>
           </div>
         </div>
-
-        <div className="dashboard-charts">
+        <div className="charts-section">
+          <h3>Recent Activity</h3>
           <div className="chart-container">
-            <h3>Recent Activity</h3>
+            {/* Chart placeholder */}
             <div className="chart-placeholder">
-              {/* Chart will be added here */}
+              Property Distribution
             </div>
           </div>
           <div className="chart-container">
