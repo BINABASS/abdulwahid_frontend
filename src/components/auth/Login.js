@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
 import './Login.css';
 
 const Login = () => {
@@ -6,6 +7,7 @@ const Login = () => {
     email: '',
     password: ''
   });
+  const navigate = useNavigate();
 
   const handleChange = (e) => {
     setFormData({
@@ -16,8 +18,7 @@ const Login = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // TODO: Add login logic
-    console.log('Login attempt:', formData);
+    navigate('/dashboard');
   };
 
   return (
@@ -59,9 +60,9 @@ const Login = () => {
             <button type="submit" className="login-button">
               Login
             </button>
-            <a href="/forgot-password" className="forgot-password">
+            <Link to="/forgot-password" className="forgot-password">
               Forgot Password?
-            </a>
+            </Link>
           </div>
         </form>
 
