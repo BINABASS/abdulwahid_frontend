@@ -1,10 +1,12 @@
 .layout {
   display: flex;
   min-height: 100vh;
+  background: var(--background-light);
+  position: relative;
 }
 
 .sidebar {
-  width: 280px;
+  width: 220px;
   background: white;
   box-shadow: var(--shadow-md);
   position: fixed;
@@ -13,14 +15,23 @@
   bottom: 0;
   z-index: 1000;
   padding: 20px;
+  overflow-y: auto;
 }
 
 .main-content {
-  margin-left: 280px;
-  padding: 35px 40px;
-  background: var(--background-light);
-  width: calc(100% - 280px);
+  margin-left: 220px;
+  width: calc(100% - 220px);
   min-height: 100vh;
+  background: var(--background-light);
+  position: relative;
+  z-index: 1;
+}
+
+.content-wrapper {
+  padding: 20px 25px;
+  box-sizing: border-box;
+  min-height: 100%;
+  background: transparent;
 }
 
 .sidebar-header {

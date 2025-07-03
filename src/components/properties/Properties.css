@@ -199,10 +199,12 @@
 .property-actions {
   display: flex;
   gap: 10px;
+  margin-top: 15px;
 }
 
 .view-details-btn,
-.edit-btn {
+.edit-btn,
+.delete-btn {
   padding: 10px 15px;
   border-radius: 6px;
   border: none;
@@ -224,14 +226,21 @@
 }
 
 .edit-btn {
-  background: var(--background-light);
-  color: var(--text-primary);
-  border: 1px solid #ddd;
+  background: var(--success-color);
+  color: white;
 }
 
 .edit-btn:hover {
-  background: #f8f9fa;
-  border-color: var(--primary-color);
+  background: var(--success-dark);
+}
+
+.delete-btn {
+  background: var(--danger-color);
+  color: white;
+}
+
+.delete-btn:hover {
+  background: var(--danger-dark);
 }
 
 /* Responsive Design */
