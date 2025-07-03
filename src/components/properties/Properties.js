@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import PropertyForm from './PropertyForm';
 import PropertyDetails from './PropertyDetails';
 import './Properties.css';
@@ -82,13 +82,23 @@ const Properties = () => {
   };
 
   // Handle details modal close
-  const handleCloseDetails = () => {
-    setShowDetails(false);
-    setSelectedProperty(null);
-    // Reset any form state if it was open
-    setShowForm(false);
-    setEditingProperty(null);
-  };
+  const handleCloseDetails = useCallback(() => {
+    // Prevent multiple close events
+    if (showDetails) {
+      setShowDetails(false);
+      setSelectedProperty(null);
+      // Reset any form state if it was open
+      setShowForm(false);
+      setEditingProperty(null);
+      // Clean up any modal elements
+      document.body.style.overflow = 'auto';
+    }
+  }, [showDetails]);
+
+  // Handle details modal close
+  const handleModalClose = useCallback(() => {
+    handleCloseDetails();
+  }, [handleCloseDetails]);
 
   const handleAddClick = () => {
     setShowForm(true);
@@ -105,7 +115,7 @@ const Properties = () => {
     if (showDetails && !properties.find(p => p.id === selectedProperty?.id)) {
       handleCloseDetails();
     }
-  }, [properties, showDetails, selectedProperty?.id]);
+  }, [properties, showDetails, selectedProperty?.id, handleCloseDetails]);
 
   // Cleanup modal components
   useEffect(() => {
@@ -220,7 +230,7 @@ const Properties = () => {
       {showDetails && selectedProperty && (
         <PropertyDetails
           property={selectedProperty}
-          onClose={handleCloseDetails}
+          onClose={handleModalClose}
           key={selectedProperty.id}
         />
       )}
