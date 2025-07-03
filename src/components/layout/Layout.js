@@ -13,6 +13,7 @@ const Layout = ({ children }) => {
     { path: '/clients', icon: 'fas fa-users', text: 'Clients' },
     { path: '/messages', icon: 'fas fa-envelope', text: 'Messages' },
     { path: '/reports', icon: 'fas fa-chart-bar', text: 'Reports' },
+    { path: '/contact', icon: 'fas fa-phone', text: 'Contact' },
   ];
 
   return (
