@@ -26,20 +26,40 @@ function App() {
         <Route path="/login" element={<Login />} />
         <Route path="/forgot-password" element={<ForgotPassword />} />
         <Route path="/contact" element={<Contact />} />
-        <Route path="/dashboard" element={<Layout />}>
-          <Route index element={<Dashboard />} />
-          <Route path="properties" element={<Properties />} />
-          <Route path="booking/:id" element={<Booking />} />
-        </Route>
-        <Route path="/bookings" element={
+        <Route path="/dashboard" element={
           <Layout>
-            <div className="no-bookings">
-              <h2>No Bookings</h2>
-              <p>You need to select a property first.</p>
-              <Link to="/properties" className="back-btn">
-                <i className="fas fa-arrow-left"></i> Back to Properties
-              </Link>
-            </div>
+            <Routes>
+              <Route index element={<Dashboard />} />
+              <Route path="properties" element={<Properties />} />
+              <Route path="booking/:id" element={<Booking />} />
+              <Route path="bookings" element={
+                <div className="no-bookings">
+                  <h2>No Bookings</h2>
+                  <p>You need to select a property first.</p>
+                  <Link to="/properties" className="back-btn">
+                    <i className="fas fa-arrow-left"></i> Back to Properties
+                  </Link>
+                </div>
+              } />
+            </Routes>
+          </Layout>
+        } />
+        <Route path="/dashboard/*" element={
+          <Layout>
+            <Routes>
+              <Route index element={<Dashboard />} />
+              <Route path="properties" element={<Properties />} />
+              <Route path="booking/:id" element={<Booking />} />
+              <Route path="bookings" element={
+                <div className="no-bookings">
+                  <h2>No Bookings</h2>
+                  <p>You need to select a property first.</p>
+                  <Link to="/properties" className="back-btn">
+                    <i className="fas fa-arrow-left"></i> Back to Properties
+                  </Link>
+                </div>
+              } />
+            </Routes>
           </Layout>
         } />
       </Routes>

@@ -50,7 +50,7 @@ const Properties = () => {
       amenities: ['garden', 'parking', 'wifi'],
       description: 'Comfortable family home in a quiet residential area.',
       image: 'https://images.unsplash.com/photo-1542314831-068cd1dbfeeb',
-    },
+    }
   ]);
 
   const handleAddProperty = (property) => {
@@ -59,7 +59,8 @@ const Properties = () => {
       id: Date.now(),
       image: 'https://via.placeholder.com/400x300',
     };
-    setProperties([...properties, newProperty]);
+    const updatedProperties = [...properties, newProperty];
+    setProperties(updatedProperties);
     setShowForm(false);
   };
 
@@ -71,9 +72,7 @@ const Properties = () => {
   };
 
   const handleDeleteProperty = (id) => {
-    if (window.confirm('Are you sure you want to delete this property?')) {
-      setProperties(properties.filter(property => property.id !== id));
-    }
+    setProperties(properties.filter(property => property.id !== id));
   };
 
   const handleViewDetails = (property) => {
@@ -83,17 +82,9 @@ const Properties = () => {
 
   // Handle details modal close
   const handleCloseDetails = useCallback(() => {
-    // Prevent multiple close events
-    if (showDetails) {
-      setShowDetails(false);
-      setSelectedProperty(null);
-      // Reset any form state if it was open
-      setShowForm(false);
-      setEditingProperty(null);
-      // Clean up any modal elements
-      document.body.style.overflow = 'auto';
-    }
-  }, [showDetails]);
+    setShowDetails(false);
+    setSelectedProperty(null);
+  }, []);
 
   // Handle details modal close
   const handleModalClose = useCallback(() => {
@@ -117,17 +108,59 @@ const Properties = () => {
     }
   }, [properties, showDetails, selectedProperty?.id, handleCloseDetails]);
 
-  // Cleanup modal components
+  // Initialize properties from localStorage if available
   useEffect(() => {
-    return () => {
-      // Cleanup form modal
-      setShowForm(false);
-      setEditingProperty(null);
-      // Cleanup details modal
-      setShowDetails(false);
-      setSelectedProperty(null);
-    };
+    const savedProperties = JSON.parse(localStorage.getItem('properties')) || [
+      {
+        id: 1,
+        title: 'Luxury Villa in City Center',
+        type: 'Villa',
+        status: 'Available',
+        price: 750000,
+        bedrooms: 4,
+        bathrooms: 3,
+        area: 2500,
+        location: 'Downtown',
+        amenities: ['pool', 'garden', 'security'],
+        description: 'Luxurious villa with stunning city views and modern amenities.',
+        image: 'https://images.unsplash.com/photo-1512917774080-9991f1c4c750',
+      },
+      {
+        id: 2,
+        title: 'Modern Apartment with View',
+        type: 'Apartment',
+        status: 'Booked',
+        price: 350000,
+        bedrooms: 2,
+        bathrooms: 2,
+        area: 1200,
+        location: 'Suburbs',
+        amenities: ['wifi', 'parking'],
+        description: 'Sleek modern apartment with beautiful city views.',
+        image: 'https://images.unsplash.com/photo-1555041469-a586c61ea9bc',
+      },
+      {
+        id: 3,
+        title: 'Cozy Family Home',
+        type: 'House',
+        status: 'Available',
+        price: 550000,
+        bedrooms: 3,
+        bathrooms: 2,
+        area: 1800,
+        location: 'Residential',
+        amenities: ['garden', 'parking', 'wifi'],
+        description: 'Comfortable family home in a quiet residential area.',
+        image: 'https://images.unsplash.com/photo-1542314831-068cd1dbfeeb',
+      }
+    ];
+    setProperties(savedProperties);
   }, []);
+
+  // Save properties to localStorage whenever they change
+  useEffect(() => {
+    localStorage.setItem('properties', JSON.stringify(properties));
+  }, [properties]);
 
   return (
     <div className="properties-page">
