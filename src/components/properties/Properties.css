@@ -2,12 +2,14 @@
   padding: 35px 40px;
   margin-left: 280px;
   background: var(--background-light);
+  min-height: 100vh;
 }
 
 .properties-header {
   display: flex;
   justify-content: space-between;
-  align-items: center;
+  align-items: flex-start;
+  gap: 20px;
   margin-bottom: 30px;
 }
 

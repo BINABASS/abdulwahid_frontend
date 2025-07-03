@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, Link, Navigate } from 'react-router-dom';
 import Welcome from './components/auth/Welcome';
 import Login from './components/auth/Login';
 import Dashboard from './components/dashboard/Dashboard';
@@ -36,7 +36,7 @@ function App() {
                 <div className="no-bookings">
                   <h2>No Bookings</h2>
                   <p>You need to select a property first.</p>
-                  <Link to="/properties" className="back-btn">
+                  <Link to="/dashboard/properties" className="back-btn">
                     <i className="fas fa-arrow-left"></i> Back to Properties
                   </Link>
                 </div>
@@ -54,7 +54,7 @@ function App() {
                 <div className="no-bookings">
                   <h2>No Bookings</h2>
                   <p>You need to select a property first.</p>
-                  <Link to="/properties" className="back-btn">
+                  <Link to="/dashboard/properties" className="back-btn">
                     <i className="fas fa-arrow-left"></i> Back to Properties
                   </Link>
                 </div>
@@ -62,6 +62,7 @@ function App() {
             </Routes>
           </Layout>
         } />
+        <Route path="/properties" element={<Navigate to="/dashboard/properties" replace />} />
       </Routes>
     </Router>
   );
