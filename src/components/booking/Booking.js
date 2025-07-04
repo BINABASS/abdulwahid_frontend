@@ -10,7 +10,7 @@ const Booking = () => {
   const [selectedProperty, setSelectedProperty] = useState(null);
   const [properties, setProperties] = useState(() => {
     const savedProperties = JSON.parse(localStorage.getItem('properties')) || [];
-    return savedProperties.filter(property => property.status === 'Booked');
+    return savedProperties.filter(property => property.status.toLowerCase() === 'booked');
   });
 
   // State for filters
@@ -103,7 +103,14 @@ const Booking = () => {
         {filteredProperties.map((property) => (
           <div key={property.id} className="booking-card">
             <div className="booking-image">
-              <img src={property.image} alt={property.title} />
+              <img 
+                src={property.image || 'https://via.placeholder.com/400x300?text=No+Image'} 
+                alt={property.title} 
+                onError={(e) => {
+                  e.target.onerror = null;
+                  e.target.src = 'https://via.placeholder.com/400x300?text=No+Image';
+                }}
+              />
               <div className="booking-overlay">
                 <div className="overlay-content">
                   <h3>{property.title}</h3>

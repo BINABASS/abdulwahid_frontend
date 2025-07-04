@@ -26,6 +26,7 @@ function App() {
         <Route path="/login" element={<Login />} />
         <Route path="/forgot-password" element={<ForgotPassword />} />
         <Route path="/contact" element={<Contact />} />
+        <Route path="/bookings" element={<Navigate to="/dashboard/booking" replace />} />
         <Route path="/dashboard" element={
           <Layout>
             <Routes>
@@ -33,7 +34,6 @@ function App() {
               <Route path="properties" element={<Properties />} />
               <Route path="booking/:id" element={<Booking />} />
               <Route path="booking" element={<Booking />} />
-              <Route path="bookings" element={<Navigate to="/dashboard/booking" replace />} />
             </Routes>
           </Layout>
         } />
@@ -44,7 +44,6 @@ function App() {
               <Route path="properties" element={<Properties />} />
               <Route path="booking/:id" element={<Booking />} />
               <Route path="booking" element={<Booking />} />
-              <Route path="bookings" element={<Navigate to="/dashboard/booking" replace />} />
             </Routes>
           </Layout>
         } />

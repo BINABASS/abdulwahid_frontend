@@ -9,7 +9,7 @@ const Layout = ({ children }) => {
   const navItems = [
     { path: '/dashboard', icon: 'fas fa-chart-line', text: 'Dashboard' },
     { path: '/properties', icon: 'fas fa-home', text: 'Properties' },
-    { path: '/bookings', icon: 'fas fa-calendar', text: 'Bookings' },
+    { path: '/dashboard/booking', icon: 'fas fa-calendar', text: 'Bookings' },
     { path: '/clients', icon: 'fas fa-users', text: 'Clients' },
     { path: '/messages', icon: 'fas fa-envelope', text: 'Messages' },
     { path: '/reports', icon: 'fas fa-chart-bar', text: 'Reports' },
