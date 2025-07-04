@@ -108,10 +108,13 @@ const Properties = () => {
         const updatedProperties = [...properties, newProperty];
         setProperties(updatedProperties);
         setShowForm(false);
+        setEditingProperty(null);
         break;
       case 'edit':
         setProperties(properties.map(p => p.id === formData.id ? formData : p));
         setShowForm(false);
+        setEditingProperty(null);
+        localStorage.setItem('properties', JSON.stringify(properties));
         break;
       case 'delete':
         setProperties(properties.filter(p => p.id !== formData.id));
@@ -276,7 +279,10 @@ const Properties = () => {
                 <button className="action-btn view-btn" onClick={() => handleViewDetails(property)}>
                   <i className="fas fa-eye"></i> View Details
                 </button>
-                <button className="action-btn edit-btn" onClick={() => handlePropertyAction(property, 'edit')}>
+                <button className="action-btn edit-btn" onClick={() => {
+                  setEditingProperty(property);
+                  setShowForm(true);
+                }}>
                   <i className="fas fa-edit"></i> Edit
                 </button>
                 <button className="action-btn delete-btn" onClick={() => handlePropertyAction(property, 'delete')}>
